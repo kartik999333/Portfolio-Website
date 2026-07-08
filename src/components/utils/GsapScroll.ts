@@ -70,9 +70,17 @@ export function setCharTimeline(
       .to(".landing-container", { y: "40%", duration: 0.8 }, 0)
       .fromTo(".about-me", { y: "-50%" }, { y: "0%" }, 0);
 
-    if (isDesktop) {
-      tl1.fromTo(".character-model", { x: 0 }, { x: "-25%", duration: 1 }, 0);
-    }
+    tl1.fromTo(
+      ".character-model",
+      { x: 0, y: 0, scale: 1 },
+      {
+        x: isDesktop ? "-25%" : "0%",
+        y: isDesktop ? "0%" : "-40vh",
+        scale: isDesktop ? 1 : 0.8,
+        duration: 1
+      },
+      0
+    );
 
     tl2
       .to(
@@ -124,11 +132,14 @@ export function setCharTimeline(
         .fromTo(".whatIDO", { y: 0 }, { y: "15%", duration: 2 }, 0)
         .to(character.rotation, { x: -0.04, duration: 2, delay: 1 }, 0);
     } else {
+      // On mobile: keep model translated and set pointer-events none
+      tl2.to(".character-model", { y: "-40vh", scale: 0.8, pointerEvents: "none", duration: 0.1 }, 0);
+
       // On mobile: animate the character model up and off-screen, and rotate it
       tl3
         .fromTo(
           ".character-model",
-          { y: "-23vh" },
+          { y: "-40vh", scale: 0.8 },
           { y: "-150%", duration: 4, ease: "none", delay: 1 },
           0
         )
