@@ -286,31 +286,39 @@
 @media only screen and (max-width: 1024px) {
   .whatIDO {
     height: auto;
-    padding: 50px 0px;
-    padding-bottom: 50px;
+    padding-top: 45vh;
+    padding-bottom: 80px;
+    box-sizing: border-box;
+    display: block;
   }
   .what-box-in {
-    height: 500px;
-    margin-left: -50px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 25px;
+    margin-left: 0px;
   }
   .what-content {
-    padding: 50px;
-    width: 500px;
+    padding: 30px;
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    box-sizing: border-box;
   }
   .what-content p {
     font-size: 14px;
   }
   .what-noTouch:hover,
   .what-content-active {
-    min-height: 67%;
-    padding: 50px;
+    min-height: auto;
+    padding: 30px;
   }
 
   .what-noTouch:hover ~ .what-content,
   .what-box-in:hover .what-noTouch:not(:hover),
   .what-content.what-sibling {
-    min-height: 33%;
-    padding: 10px 50px;
+    min-height: auto;
+    padding: 30px;
   }
 }
 @media only screen and (max-width: 900px) {

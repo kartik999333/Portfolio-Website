@@ -23,4 +23,5 @@ export default function handleResize(
   });
   setCharTimeline(character, camera);
   setAllTimeline();
+  ScrollTrigger.refresh();
 }

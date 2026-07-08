@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { DRACOLoader, GLTF, GLTFLoader } from "three-stdlib";
 import { setCharTimeline, setAllTimeline } from "../../utils/GsapScroll";
 import { decryptFile } from "./decrypt";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const setCharacter = (
   renderer: THREE.WebGLRenderer,
@@ -18,7 +19,7 @@ const setCharacter = (
       try {
         const encryptedBlob = await decryptFile(
           "/models/character.enc",
-          "Character3D#@"
+          "MyCharacter12"
         );
         const blobUrl = URL.createObjectURL(new Blob([encryptedBlob]));
 
@@ -39,6 +40,7 @@ const setCharacter = (
             resolve(gltf);
             setCharTimeline(character, camera);
             setAllTimeline();
+            ScrollTrigger.refresh();
             character!.getObjectByName("footR")!.position.y = 3.36;
             character!.getObjectByName("footL")!.position.y = 3.36;
             dracoLoader.dispose();

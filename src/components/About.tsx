@@ -4,11 +4,13 @@ const About = () => {
   return (
     <div className="about-section" id="about">
       <div className="about-me">
-        <h3 className="title">About Me</h3>
+        <h3 className="title">About Us</h3>
         <p className="para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-          dolores numquam iusto Ratione earum ducimus autem id iure pariatur
-          dolorum quae maiores.
+          Webnbuild is a Shopify store-building studio. We help brands selling
+          through Instagram DMs move onto a real online store — one that's built
+          for how they actually sell, not a generic template with a logo swap.
+          From product pages to checkout, we build stores that turn followers
+          into customers.
         </p>
       </div>
     </div>
