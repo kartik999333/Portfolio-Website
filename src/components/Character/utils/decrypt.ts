@@ -14,10 +14,24 @@ export const decryptFile = async (
   url: string,
   password: string
 ): Promise<ArrayBuffer> => {
-  const response = await fetch(url);
-  const encryptedData = await response.arrayBuffer();
-  const iv = new Uint8Array(encryptedData.slice(0, 16));
-  const data = encryptedData.slice(16);
-  const key = await generateAESKey(password);
-  return crypto.subtle.decrypt({ name: "AES-CBC", iv }, key, data);
+  try {
+    const response = await fetch(url);
+    const encryptedData = await response.arrayBuffer();
+    const iv = new Uint8Array(encryptedData.slice(0, 16));
+    const data = encryptedData.slice(16);
+    
+    if (typeof window !== "undefined" && (!window.crypto || !window.crypto.subtle)) {
+      throw new Error(
+        "Web Crypto API (window.crypto.subtle) is NOT available. " +
+        "Note: Web Crypto API requires a secure context (HTTPS) to run on physical mobile devices. " +
+        "Please test using the deployed HTTPS Vercel URL!"
+      );
+    }
+    
+    const key = await generateAESKey(password);
+    return crypto.subtle.decrypt({ name: "AES-CBC", iv }, key, data);
+  } catch (err) {
+    console.error("Decryption error during model load:", err);
+    throw err;
+  }
 };

@@ -28,7 +28,17 @@ const setCharacter = (
           blobUrl,
           async (gltf) => {
             character = gltf.scene;
-            await renderer.compileAsync(character, camera, scene);
+            try {
+              // Fallback to synchronous compilation if async is not supported or fails
+              if (renderer.compileAsync) {
+                await renderer.compileAsync(character, camera, scene);
+              } else {
+                renderer.compile(character, camera, scene);
+              }
+            } catch (compileErr) {
+              console.warn("Async compile failed, falling back to sync compile:", compileErr);
+              renderer.compile(character, camera, scene);
+            }
             character.traverse((child: any) => {
               if (child.isMesh) {
                 const mesh = child as THREE.Mesh;
