@@ -121,7 +121,7 @@
 }
 .character-model::after {
   content: "";
-  width: 100vw;
+  width: 150vw;
   height: 250px;
   background-image: linear-gradient(
     to bottom,
@@ -136,7 +136,7 @@
 }
 .character-model::before {
   content: "";
-  width: 100vw;
+  width: 150vw;
   height: 700px;
   background-color: var(--backgroundColor);
   top: 100%;

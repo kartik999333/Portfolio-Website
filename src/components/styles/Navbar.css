@@ -13,15 +13,15 @@
   z-index: 9999;
 }
 .header ul {
-  font-size: 12px;
+  font-size: 11px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin: 0;
   padding: 0;
   list-style: none;
-  column-gap: 40px;
-  row-gap: 8px;
-  align-items: end;
+  column-gap: 15px;
+  row-gap: 0px;
+  align-items: center;
 }
 .header ul li {
   margin-left: 0px;
