@@ -124,8 +124,15 @@ export function setCharTimeline(
         .fromTo(".whatIDO", { y: 0 }, { y: "15%", duration: 2 }, 0)
         .to(character.rotation, { x: -0.04, duration: 2, delay: 1 }, 0);
     } else {
-      // On mobile: just animate model rotation, sections handle their own layout
-      tl3.to(character.rotation, { x: -0.04, duration: 2, delay: 1 }, 0);
+      // On mobile: animate the character model up and off-screen, and rotate it
+      tl3
+        .fromTo(
+          ".character-model",
+          { y: "-23vh" },
+          { y: "-150%", duration: 4, ease: "none", delay: 1 },
+          0
+        )
+        .to(character.rotation, { x: -0.04, duration: 2, delay: 1 }, 0);
     }
   }
 }
