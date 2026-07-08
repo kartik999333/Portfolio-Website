@@ -2,6 +2,8 @@ import * as THREE from "three";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { setCharTimeline, setAllTimeline } from "../../utils/GsapScroll";
 
+let lastWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+
 export default function handleResize(
   renderer: THREE.WebGLRenderer,
   camera: THREE.PerspectiveCamera,
@@ -15,6 +17,14 @@ export default function handleResize(
   renderer.setSize(width, height);
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
+
+  const currentWidth = window.innerWidth;
+  if (currentWidth === lastWidth) {
+    // Skip heavy GSAP ScrollTrigger recreation on vertical-only resize (mobile address bar scroll)
+    return;
+  }
+  lastWidth = currentWidth;
+
   const workTrigger = ScrollTrigger.getById("work");
   ScrollTrigger.getAll().forEach((trigger) => {
     if (trigger != workTrigger) {

@@ -9,6 +9,7 @@ export function setCharTimeline(
   setInterval(() => {
     intensity = Math.random();
   }, 200);
+  const isDesktop = typeof window !== "undefined" && window.innerWidth > 1024;
   const tl1 = gsap.timeline({
     scrollTrigger: {
       trigger: ".landing-section",
@@ -21,7 +22,7 @@ export function setCharTimeline(
   const tl2 = gsap.timeline({
     scrollTrigger: {
       trigger: ".about-section",
-      start: "center 55%",
+      start: isDesktop ? "center 55%" : "top 40%",
       end: "bottom top",
       scrub: true,
       invalidateOnRefresh: true,
@@ -30,7 +31,7 @@ export function setCharTimeline(
   const tl3 = gsap.timeline({
     scrollTrigger: {
       trigger: ".whatIDO",
-      start: "top top",
+      start: isDesktop ? "top top" : "top 30%",
       end: "bottom top",
       scrub: true,
       invalidateOnRefresh: true,
