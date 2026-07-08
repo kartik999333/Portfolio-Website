@@ -109,6 +109,15 @@
   bottom: 0px;
   pointer-events: inherit;
 }
+/* Mobile: reduce model to top 55% of screen so content is never hidden */
+@media screen and (max-width: 1024px) {
+  .character-model {
+    height: 55vh;
+    bottom: auto;
+    top: 0;
+    z-index: 5;
+  }
+}
 .character-model::after {
   content: "";
   width: 100vw;

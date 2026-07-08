@@ -200,6 +200,7 @@
   word-spacing: 6px;
   color: #000000;
   text-transform: uppercase;
+  font-family: "Geist", sans-serif;
 }
 @keyframes blink {
   0% {

@@ -72,24 +72,32 @@
 
 @media only screen and (max-width: 1024px) {
   .about-section {
-    height: 135vh;
-    display: block;
+    height: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 58vh;
+    padding-bottom: 60px;
     box-sizing: border-box;
+    position: relative;
+    z-index: 6;
+    background-color: var(--backgroundColor);
   }
   .about-me {
     text-align: center;
     width: 100%;
     max-width: 100%;
-    padding-top: 60vh;
-    padding-bottom: 50px;
-    z-index: 12;
+    padding: 20px 20px 0;
+    z-index: 7;
     box-sizing: border-box;
   }
   .about-me h3 {
-    font-size: 20px;
+    font-size: 18px;
+    letter-spacing: 4px;
   }
   .about-me p {
-    font-size: 24px;
-    line-height: 30px;
+    font-size: 22px;
+    line-height: 28px;
   }
 }
