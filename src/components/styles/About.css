@@ -75,6 +75,9 @@
     height: 135vh;
     display: block;
     box-sizing: border-box;
+    position: relative;
+    z-index: 6;
+    background-color: var(--backgroundColor);
   }
   .about-me {
     text-align: center;

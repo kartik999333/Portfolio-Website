@@ -208,6 +208,12 @@
   }
 } */
 @media only screen and (max-width: 1025px) {
+  .work-section {
+    position: relative;
+    z-index: 6;
+    background-color: var(--backgroundColor);
+    height: auto;
+  }
   .work-container {
     align-content: normal;
   }

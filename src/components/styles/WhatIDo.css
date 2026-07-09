@@ -290,6 +290,9 @@
     padding-bottom: 80px;
     box-sizing: border-box;
     display: block;
+    position: relative;
+    z-index: 6;
+    background-color: var(--backgroundColor);
   }
   .what-box-in {
     display: flex;
