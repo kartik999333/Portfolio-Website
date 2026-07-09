@@ -6,17 +6,10 @@ export function setCharTimeline(
   camera: THREE.PerspectiveCamera
 ) {
   const isDesktop = window.innerWidth > 1024;
-  const modelX = isDesktop ? "-25%" : "0%";
-  const aboutModelX = isDesktop ? "-12%" : "0%";
-  const landingCameraZ = isDesktop ? 22 : 30;
-
-  // On mobile, force What We Do service container to be visible immediately
-  if (!isDesktop) {
-    const whatBoxIn = document.querySelector(".what-box-in") as HTMLElement;
-    if (whatBoxIn) {
-      whatBoxIn.style.display = "flex";
-    }
-  }
+  const modelX = isDesktop ? "-25%" : "-15%";
+  const aboutModelX = isDesktop ? "-12%" : "-8%";
+  const landingCameraZ = isDesktop ? 22 : 28;
+  const deskCameraZ = isDesktop ? 75 : 85;
 
   let intensity: number = 0;
   setInterval(() => {
@@ -35,7 +28,7 @@ export function setCharTimeline(
   const tl2 = gsap.timeline({
     scrollTrigger: {
       trigger: ".about-section",
-      start: "top 95%",
+      start: "center 55%",
       end: "bottom top",
       scrub: true,
       invalidateOnRefresh: true,
@@ -90,19 +83,19 @@ export function setCharTimeline(
       .fromTo(character.rotation, { y: 0 }, { y: 0.7, duration: 1 }, 0)
       .to(camera.position, { z: landingCameraZ }, 0)
       .fromTo(".character-model", { x: 0 }, { x: modelX, duration: 1 }, 0)
-      .to(".landing-container", { opacity: isDesktop ? 0 : 1, duration: 0.4 }, 0)
-      .to(".landing-container", { y: isDesktop ? "40%" : "0%", duration: 0.8 }, 0)
-      .fromTo(".about-me", { y: isDesktop ? "-50%" : "0%" }, { y: "0%" }, 0);
+      .to(".landing-container", { opacity: 0, duration: 0.4 }, 0)
+      .to(".landing-container", { y: "40%", duration: 0.8 }, 0)
+      .fromTo(".about-me", { y: "-50%" }, { y: "0%" }, 0);
 
-    // TL2: About Us Setup & Screen reveal
+    // TL2: About Us to What We Do
     tl2
       .to(
         camera.position,
-        { z: 75, y: 8.4, duration: 6, delay: 2, ease: "power3.inOut" },
+        { z: deskCameraZ, y: 8.4, duration: 6, delay: 2, ease: "power3.inOut" },
         0
       )
-      .to(".about-section", { y: isDesktop ? "30%" : "0%", duration: 6 }, 0)
-      .to(".about-section", { opacity: isDesktop ? 0 : 1, delay: 3, duration: 2 }, 0)
+      .to(".about-section", { y: "30%", duration: 6 }, 0)
+      .to(".about-section", { opacity: 0, delay: 3, duration: 2 }, 0)
       .fromTo(
         ".character-model",
         { pointerEvents: "inherit" },
@@ -115,7 +108,7 @@ export function setCharTimeline(
       .to(screenLight.material, { opacity: 1, duration: 0.8, delay: 4.5 }, 0)
       .fromTo(
         ".what-box-in",
-        { display: isDesktop ? "none" : "flex" },
+        { display: "none" },
         { display: "flex", duration: 0.1, delay: 6 },
         0
       )
@@ -132,16 +125,16 @@ export function setCharTimeline(
         0.3
       );
 
-    // TL3: About Us to What We Do (Model slides out of screen)
+    // TL3: What We Do to Career
     tl3
       .fromTo(
         ".character-model",
         { y: "0%" },
-        { y: isDesktop ? "-150%" : "150%", duration: 4, ease: "none", delay: 1 },
+        { y: "-150%", duration: 4, ease: "none", delay: 1 },
         0
       )
-      .fromTo(".whatIDO", { y: 0 }, { y: isDesktop ? "15%" : "0%", duration: 2 }, 0)
-      .to(character.rotation, { x: isDesktop ? -0.04 : 0, duration: 2, delay: 1 }, 0);
+      .fromTo(".whatIDO", { y: 0 }, { y: "15%", duration: 2 }, 0)
+      .to(character.rotation, { x: -0.04, duration: 2, delay: 1 }, 0);
   }
 }
 
