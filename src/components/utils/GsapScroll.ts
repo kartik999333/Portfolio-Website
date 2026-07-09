@@ -85,7 +85,7 @@ export function setCharTimeline(
       .fromTo(".character-model", { x: 0 }, { x: modelX, duration: 1 }, 0)
       .to(".landing-container", { opacity: 0, duration: 0.4 }, 0)
       .to(".landing-container", { y: "40%", duration: 0.8 }, 0)
-      .fromTo(".about-me", { y: "-50%" }, { y: "0%" }, 0);
+      .fromTo(".about-me", { y: isDesktop ? "-50%" : "0%" }, { y: "0%" }, 0);
 
     // TL2: About Us to What We Do
     tl2
@@ -94,7 +94,7 @@ export function setCharTimeline(
         { z: deskCameraZ, y: 8.4, duration: 6, delay: 2, ease: "power3.inOut" },
         0
       )
-      .to(".about-section", { y: "30%", duration: 6 }, 0)
+      .to(".about-section", { y: isDesktop ? "30%" : "0%", duration: 6 }, 0)
       .to(".about-section", { opacity: 0, delay: 3, duration: 2 }, 0)
       .fromTo(
         ".character-model",
