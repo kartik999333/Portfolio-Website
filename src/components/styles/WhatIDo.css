@@ -286,7 +286,7 @@
 @media only screen and (max-width: 1024px) {
   .whatIDO {
     height: auto;
-    padding-top: 45vh;
+    padding-top: 40px;
     padding-bottom: 80px;
     box-sizing: border-box;
     display: block;
@@ -295,7 +295,7 @@
     background-color: var(--backgroundColor);
   }
   .what-box-in {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     height: auto;
     gap: 25px;
