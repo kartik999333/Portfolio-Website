@@ -359,7 +359,7 @@ h2.landing-info-h2 {
 @media screen and (max-width: 1024px) {
   .character-model {
     z-index: 5 !important;
-    height: 70vh;
+    height: 62vh;
   }
   .character-model::before,
   .character-model::after {
