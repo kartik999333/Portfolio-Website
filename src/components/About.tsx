@@ -13,9 +13,6 @@ const About = () => {
           into customers.
         </p>
       </div>
-      <div className="about-character-image">
-        <img src="/images/about-character.png" alt="WEB N BUILD Developer character" />
-      </div>
     </div>
   );
 };

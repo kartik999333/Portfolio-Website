@@ -72,55 +72,24 @@
 
 @media only screen and (max-width: 1024px) {
   .about-section {
-    height: auto;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 80px;
-    padding-bottom: 60px;
+    height: 135vh;
+    display: block;
     box-sizing: border-box;
-    position: relative;
-    z-index: 6;
-    background-color: var(--backgroundColor);
   }
   .about-me {
     text-align: center;
     width: 100%;
     max-width: 100%;
-    padding-top: 0;
-    padding-bottom: 20px;
-    position: relative;
-    z-index: 5;
+    padding-top: 60vh;
+    padding-bottom: 50px;
+    z-index: 12;
+    box-sizing: border-box;
   }
   .about-me h3 {
-    font-size: 18px;
-    letter-spacing: 4px;
+    font-size: 20px;
   }
   .about-me p {
-    font-size: 22px;
-    line-height: 28px;
-  }
-}
-
-.about-character-image {
-  display: none;
-}
-
-@media only screen and (max-width: 1024px) {
-  .about-character-image {
-    display: block;
-    width: 90%;
-    max-width: 320px;
-    margin: 20px auto 0 auto;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(184, 115, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  .about-character-image img {
-    width: 100%;
-    height: auto;
-    display: block;
+    font-size: 24px;
+    line-height: 30px;
   }
 }

@@ -98,8 +98,6 @@ body {
   margin: auto;
   margin-top: 50px;
   margin-bottom: -100px;
-  z-index: 6;
-  background-color: var(--backgroundColor);
 }
 
 .techstack h2 {

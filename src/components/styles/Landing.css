@@ -102,26 +102,16 @@
   position: fixed;
   max-width: 1920px;
   max-height: 1080px;
-  transform: translate3d(-50%, 0, 0);
-  will-change: transform;
+  transform: translateX(-50%);
   width: 100%;
   left: 50%;
   z-index: 11;
   bottom: 0px;
   pointer-events: inherit;
 }
-/* Mobile: place model at the bottom, behind text */
-@media screen and (max-width: 1024px) {
-  .character-model {
-    height: 80vh;
-    bottom: 0;
-    top: auto;
-    z-index: 5;
-  }
-}
 .character-model::after {
   content: "";
-  width: 150vw;
+  width: 100vw;
   height: 250px;
   background-image: linear-gradient(
     to bottom,
@@ -136,7 +126,7 @@
 }
 .character-model::before {
   content: "";
-  width: 150vw;
+  width: 100vw;
   height: 700px;
   background-color: var(--backgroundColor);
   top: 100%;
