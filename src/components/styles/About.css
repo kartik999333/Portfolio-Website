@@ -72,21 +72,21 @@
 
 @media only screen and (max-width: 1024px) {
   .about-section {
-    height: 135vh;
+    height: auto;
     display: block;
     box-sizing: border-box;
     position: relative;
-    z-index: 6;
-    background-color: var(--backgroundColor);
   }
   .about-me {
     text-align: center;
     width: 100%;
     max-width: 100%;
-    padding-top: 60vh;
-    padding-bottom: 50px;
-    z-index: 12;
+    margin-top: 55vh;
+    padding: 40px 20px;
+    z-index: 7;
     box-sizing: border-box;
+    position: relative;
+    background-color: var(--backgroundColor);
   }
   .about-me h3 {
     font-size: 20px;
@@ -96,3 +96,4 @@
     line-height: 30px;
   }
 }
+

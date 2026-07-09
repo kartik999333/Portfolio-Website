@@ -357,15 +357,12 @@ h2.landing-info-h2 {
 }
 
 @media screen and (max-width: 1024px) {
-  .character-model,
-  .character-container {
-    display: none !important;
+  .character-model {
+    z-index: 5 !important;
+    height: 70vh;
   }
   .character-model::before,
   .character-model::after {
-    display: none !important;
-  }
-  .character-rim {
     display: none !important;
   }
   .landing-circle1,
@@ -373,4 +370,3 @@ h2.landing-info-h2 {
     display: none !important;
   }
 }
-

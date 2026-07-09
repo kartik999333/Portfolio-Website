@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function setCharTimeline(
   character: THREE.Object3D<THREE.Object3DEventMap> | null,
@@ -7,18 +8,103 @@ export function setCharTimeline(
 ) {
   const isDesktop = window.innerWidth > 1024;
 
-  // On mobile, skip all character model scroll animations entirely.
-  // The model is hidden on mobile, so no scroll triggers are needed.
   if (!isDesktop) {
+    // === MOBILE: static model with pose switching, no scroll animation ===
+
     // Ensure .what-box-in is visible on mobile (it starts as display:none)
     const whatBoxIn = document.querySelector(".what-box-in") as HTMLElement;
-    if (whatBoxIn) {
-      whatBoxIn.style.display = "flex";
+    if (whatBoxIn) whatBoxIn.style.display = "flex";
+
+    if (!character) return;
+
+    // Set up monitor and screenlight references
+    let screenLight: any, monitor: any;
+    let intensity: number = 0;
+    setInterval(() => {
+      intensity = Math.random();
+    }, 200);
+
+    character.children.forEach((object: any) => {
+      if (object.name === "Plane004") {
+        object.children.forEach((child: any) => {
+          child.material.transparent = true;
+          child.material.opacity = 0;
+          if (child.material.name === "Material.018") {
+            monitor = child;
+            child.material.color.set("#FFFFFF");
+          }
+        });
+      }
+      if (object.name === "screenlight") {
+        object.material.transparent = true;
+        object.material.opacity = 0;
+        object.material.emissive.set("#C8BFFF");
+        gsap
+          .timeline({ repeat: -1, repeatRefresh: true })
+          .to(object.material, {
+            emissiveIntensity: () => intensity * 8,
+            duration: () => Math.random() * 0.6,
+            delay: () => Math.random() * 0.1,
+          });
+        screenLight = object;
+      }
+    });
+
+    const neckBone = character.getObjectByName("spine005");
+
+    // Set initial hero pose (monitor hidden, default camera)
+    if (monitor) {
+      monitor.position.y = -10;
+      monitor.position.z = 2;
     }
+
+    // When about section enters → snap to desk pose
+    ScrollTrigger.create({
+      trigger: ".about-section",
+      start: "top 95%",
+      onEnter: () => {
+        camera.position.set(0, 8.4, 75);
+        character.rotation.set(0.12, 0.92, 0);
+        if (neckBone) neckBone.rotation.x = 0.6;
+        if (monitor) {
+          monitor.material.opacity = 1;
+          monitor.position.y = 0;
+          monitor.position.z = 0;
+        }
+        if (screenLight) screenLight.material.opacity = 1;
+        gsap.set(".character-rim", { opacity: 0 });
+      },
+      onLeaveBack: () => {
+        // Snap back to hero close-up pose
+        camera.position.set(0, 13.1, 24.7);
+        character.rotation.set(0, 0, 0);
+        if (neckBone) neckBone.rotation.x = 0;
+        if (monitor) {
+          monitor.material.opacity = 0;
+          monitor.position.y = -10;
+          monitor.position.z = 2;
+        }
+        if (screenLight) screenLight.material.opacity = 0;
+        gsap.set(".character-rim", { clearProps: "opacity" });
+      },
+    });
+
+    // When whatIDO enters → hide model entirely
+    ScrollTrigger.create({
+      trigger: ".whatIDO",
+      start: "top 90%",
+      onEnter: () => {
+        gsap.set(".character-model", { autoAlpha: 0 });
+      },
+      onLeaveBack: () => {
+        gsap.set(".character-model", { autoAlpha: 1 });
+      },
+    });
+
     return;
   }
 
-  // === Desktop-only character scroll animations below ===
+  // === Desktop-only character scroll animations below (unchanged) ===
   let intensity: number = 0;
   setInterval(() => {
     intensity = Math.random();
