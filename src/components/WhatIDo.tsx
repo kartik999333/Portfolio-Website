@@ -98,8 +98,6 @@ const WhatIDo = () => {
                 <div className="what-tags">Shopify</div>
                 <div className="what-tags">Liquid</div>
                 <div className="what-tags">Custom Themes</div>
-                <div className="what-tags">HTML/CSS</div>
-                <div className="what-tags">JavaScript</div>
                 <div className="what-tags">Checkout Setup</div>
                 <div className="what-tags">Payment Gateways</div>
                 <div className="what-tags">App Integrations</div>
